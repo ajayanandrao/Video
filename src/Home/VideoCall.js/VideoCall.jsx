@@ -27,7 +27,7 @@ const VideoCall = () => {
             const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
             setLocalStream(stream);
             webcamVideoRef.current.srcObject = stream;
-            const pc = new RTCPeerConnection();
+            const pc = new RTCPeerConnection(servers);
             peerConnectionSaveRef.current = pc; // Save peer connection instance
             stream.getTracks().forEach((track) => {
                 pc.addTrack(track, stream);
@@ -108,6 +108,74 @@ const VideoCall = () => {
 
 
 
+    // const handleAnswerButton = async () => {
+    //     try {
+    //         const callId = document.getElementById('callInput').value;
+    //         const callDocRef = doc(db, 'calls', callId);
+    //         const answerCandidatesRef = collection(callDocRef, 'answerCandidates');
+    //         const offerCandidatesRef = collection(callDocRef, 'offerCandidates');
+
+    //         const pc = new RTCPeerConnection(servers);
+
+    //         pc.onicecandidate = (event) => {
+    //             event.candidate && addDoc(answerCandidatesRef, event.candidate.toJSON());
+    //         };
+
+    //         const callData = (await getDoc(callDocRef)).data();
+
+    //         const offerDescription = callData.offer;
+    //         await pc.setRemoteDescription(new RTCSessionDescription(offerDescription));
+
+    //         const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+    //         setLocalStream(stream);
+    //         webcamVideoRef.current.srcObject = stream;
+    //         stream.getTracks().forEach((track) => {
+    //             pc.addTrack(track, stream);
+    //         });
+
+    //         const answerDescription = await pc.createAnswer();
+    //         await pc.setLocalDescription(answerDescription);
+
+    //         const answer = {
+    //             type: answerDescription.type,
+    //             sdp: answerDescription.sdp,
+    //         };
+
+    //         await setDoc(callDocRef, { answer });
+
+    //         onSnapshot(offerCandidatesRef, (snapshot) => {
+    //             snapshot.docChanges().forEach((change) => {
+    //                 if (change.type === 'added') {
+    //                     const data = change.doc.data();
+    //                     pc.addIceCandidate(new RTCIceCandidate(data));
+    //                 }
+    //             });
+    //         });
+
+
+    //         pc.ontrack = (event) => {
+    //             event.streams[0].getTracks().forEach((track) => {
+    //                 if (remoteStream) {
+    //                     remoteStream.addTrack(track);
+    //                 } else {
+    //                     const newRemoteStream = new MediaStream();
+    //                     newRemoteStream.addTrack(track);
+    //                     setRemoteStream(newRemoteStream);
+    //                     remoteVideoRef.current.srcObject = newRemoteStream;
+    //                 }
+    //             });
+    //         };
+
+    //         // Disable answer button after answering the call
+    //         const hangupButton = document.getElementById('hangupButton');
+    //         if (hangupButton) {
+    //             hangupButton.disabled = false;
+    //         }
+    //     } catch (error) {
+    //         console.error('Error answering call:', error);
+    //     }
+    // };
+
     const handleAnswerButton = async () => {
         try {
             const callId = document.getElementById('callInput').value;
@@ -115,7 +183,7 @@ const VideoCall = () => {
             const answerCandidatesRef = collection(callDocRef, 'answerCandidates');
             const offerCandidatesRef = collection(callDocRef, 'offerCandidates');
     
-            const pc = new RTCPeerConnection();
+            const pc = peerConnectionSaveRef.current; // Access saved peer connection instance
     
             pc.onicecandidate = (event) => {
                 event.candidate && addDoc(answerCandidatesRef, event.candidate.toJSON());
@@ -152,6 +220,7 @@ const VideoCall = () => {
                 });
             });
     
+    
             pc.ontrack = (event) => {
                 event.streams[0].getTracks().forEach((track) => {
                     if (remoteStream) {
@@ -175,8 +244,6 @@ const VideoCall = () => {
         }
     };
     
-
-
 
     return (
         <div>
