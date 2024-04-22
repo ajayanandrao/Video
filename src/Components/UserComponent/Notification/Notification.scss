@@ -1,0 +1,82 @@
+@import "./../../../Styles/variables.scss";
+@import "./../../../Styles/Mixin_New.scss";
+
+.notification-card {
+    margin-bottom: 0rem !important;
+    position: relative;
+    background: $sender;
+    padding: 0.5rem !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.425);
+
+
+    .notification-card-overlay {
+        width: 85%;
+        height: 62px;
+        background: $left;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 5px 0px 0px 5px;
+        padding: 0.5rem;
+        animation: identifier;
+        animation-duration: 0.7s;
+        border-right: 1px solid rgba(255, 255, 255, 0.425);
+
+        .notifiaction-img {
+            width: 45px;
+            height: 45px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .follow-back-btn {
+            margin-left: 1rem;
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            text-wrap: nowrap;
+            animation: follow-back-btn-Animate;
+            animation-duration: 0.7s;
+        }
+    }
+
+    @keyframes follow-back-btn-Animate {
+        0% {
+            opacity: 0;
+        }
+
+        50% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes identifier {
+        0% {
+            width: 0%;
+        }
+
+        100% {
+            width: 85%;
+        }
+    }
+}
+
+.noti-option-btn {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+}

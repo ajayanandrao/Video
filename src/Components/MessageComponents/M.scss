@@ -1,0 +1,392 @@
+@import "./../../Styles/Mixin_New.scss";
+@import "./../../Styles/variables.scss";
+
+
+// Center Div Styles @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+.message-item {
+    display: flex;
+    align-items: flex-end;
+    margin-top: 5px;
+    /* Use margin-top instead of margin-bottom */
+    position: relative;
+    width: 100%;
+
+    .message-content {
+        position: relative;
+        font-family: "Nunito", sans-serif;
+        font-weight: 400;
+
+        .message-time-div {
+            flex: 1;
+            text-align: end;
+            font-size: 10px;
+            font-weight: 300;
+            margin-top: 0px;
+            color: rgba(255, 255, 255, 0.719);
+        }
+    }
+
+    &.sender {
+        justify-content: flex-end;
+
+        // background: red;
+        .messageImg-div {
+            transition: 0.3s ease-in-out;
+        }
+
+        .message-content {
+            width: 100%;
+            word-wrap: break-word;
+            background: $sender;
+            border: 1px solid $border;
+            transition: 0.3s ease-in-out;
+
+            @include respond-to(xs) {
+                max-width: 290px;
+            }
+        }
+
+
+        .delete-button {
+            display: none;
+        }
+
+        // .message-reply {
+
+        // }
+
+        &:hover {
+            .delete-button {
+                display: block;
+            }
+        }
+    }
+
+    &.user {
+        justify-content: flex-start;
+    }
+
+    .message-bubble {
+        // padding: 10px;
+        border-radius: 20px;
+        max-width: 100%;
+
+        &.message-sender {
+            // background-color: #1877f2;
+            color: #fff;
+
+            .messageImgLike-div {
+                width: auto;
+                display: inline-flex;
+                // background-color: red;
+
+                .messageImgLike {
+                    // width: 100%;
+                    // max-width: 40px;
+                    height: 50px;
+                    width: 50px;
+                    object-fit: contain;
+                    object-fit: contain;
+                    object-fit: cover;
+                    object-position: center;
+                    border-radius: 0.5rem;
+                    // background-color: red;
+                    display: inline-flex;
+                }
+            }
+
+            .message-content {
+                width: 100%;
+                word-wrap: break-word;
+            }
+        }
+
+        &.message-recipient {
+            // background: yellow;
+            display: flex;
+
+            .messageImg-div {
+                background-color: $left;
+                transition: 0.3s ease-in-out;
+            }
+
+            .message-video-container {
+                background-color: $left;
+                transition: 0.3s ease-in-out;
+            }
+
+            .message-reply {
+                border-top: 1px solid $border;
+                border-bottom: 1px solid $border;
+                border-right: 1px solid $border;
+                border-left: 3px solid aqua;
+                background: #333842c1
+            }
+
+            .replay-name {
+                // color: rgba(0, 255, 255, 0.748);
+                color: aqua;
+            }
+
+            .messageImgLike-div {
+                width: auto;
+                display: inline-flex;
+                // background-color: red;
+
+                .messageImgLike {
+                    // width: 100%;
+                    // max-width: 40px;
+                    height: 50px;
+                    width: 50px;
+                    object-fit: cover;
+                    // background-color: red;
+                    display: inline-flex;
+                    object-fit: cover;
+                    object-position: center;
+                    border-radius: 0.5rem;
+                }
+            }
+
+            .message-content {
+                background-color: $right;
+                width: 100%;
+                word-wrap: break-word;
+                border: 1px solid $border;
+                border-radius: 5px 5px 5px 0px;
+                transition: 0.3s ease-in-out;
+
+                .message-time-div {
+                    flex: 1;
+                    text-align: start;
+                    font-size: 10px;
+                    font-weight: 300;
+                    margin-top: 1px;
+                    color: rgba(255, 255, 255, 0.719);
+                }
+
+                @include respond-to(xs) {
+                    max-width: 260px;
+                }
+            }
+        }
+
+        &.has-image {
+            padding: 0;
+        }
+
+        .messageImg-div {
+            width: 300px;
+            height: 300px;
+            background: $sender;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            position: relative;
+
+            @include respond-to (xs) {
+                width: 250px;
+                height: 250px;
+            }
+
+            .messageImg-time {
+                position: absolute;
+                bottom: 15px;
+                right: 15px;
+                font-size: 11px;
+                text-transform: uppercase;
+                color: rgba(255, 255, 255, 0.815);
+            }
+
+            .message-img-option-overlay {
+                position: absolute;
+                top: 40%;
+                left: -80px;
+                border-radius: 15px 15px 0px 15px;
+                background: $input;
+                padding: 0.5rem 1rem;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                z-index: 1;
+            }
+
+            .messageImg {
+                width: 100%;
+                height: 100%;
+                border-radius: 5px;
+                object-fit: cover;
+                object-position: center;
+                cursor: pointer;
+            }
+        }
+
+        // Video =========
+
+        .message-video-container {
+            width: 300px;
+            height: 300px;
+            background: $sender;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            position: relative;
+
+            @include respond-to (xs) {
+                width: 250px;
+                height: 250px;
+            }
+
+            .messageVideo {
+                width: 100%;
+                height: 100%;
+                border-radius: 5px;
+                object-fit: cover;
+                object-position: center;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .last-conversation-time {
+        font-size: 12px;
+        color: #999;
+        margin-top: 4px;
+    }
+
+    .message-content {
+        width: 100%;
+        max-width: 550px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        cursor: pointer;
+        padding: 4px 12px;
+        border-radius: 5px 5px 0 5px;
+        line-height: 20px;
+        font-size: 14px;
+    }
+
+    .message-reply {
+        font-size: 12px;
+        cursor: pointer;
+        border-top: 1px solid $border;
+        border-bottom: 1px solid $border;
+        border-right: 1px solid $border;
+        border-left: 3px solid aqua;
+        border-radius: 3px;
+        padding: 5px;
+        box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+        line-height: 15px;
+        background: #128c7e82;
+
+        .replay-message-img-div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .replay-name {
+            color: aqua;
+        }
+
+        .replay-message {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            // display: -webkit-box;
+            -webkit-line-clamp: 2;
+            color: rgb(210, 210, 210);
+        }
+
+        .replied-video {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-top: 5px;
+        }
+
+        .replied-image {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-top: 5px;
+        }
+    }
+
+    .delete-button,
+    .reply-button {
+        display: none;
+        cursor: pointer;
+        font-size: 18px;
+        margin: 0 4px;
+
+        &:hover {
+            color: #1877f2;
+        }
+    }
+
+    &:hover {
+        .reply-button {
+            display: block;
+        }
+    }
+
+}
+
+
+.message-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    margin-right: 0.5rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+
+.skeleton-center {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: url("./../../Assets//sdPng.png");
+    background-size: contain;
+    background-position: center;
+
+    .skeleton-center-div {
+        padding: 0.5rem 1rem;
+        background: $wsms;
+        border-radius: 20px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.356);
+    }
+}
+
+.message-option-overlay {
+    position: absolute;
+    top: -35px;
+    left: -80px;
+    border-radius: 5px 5px 0px 5px;
+    background: $right;
+    padding: 0.5rem 1rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    z-index: 2;
+    border: 1px solid $wsms2;
+    backdrop-filter: blur(2px);
+}
+
+.message-option-overlay-reciver {
+    position: absolute;
+    border: 1px solid $wsms2;
+    top: -70px;
+    right: -80px;
+    border-radius: 5px 5px 5px 0px;
+    background: $right;
+    padding: 0.5rem 1rem;
+    z-index: 2;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.reply-view-message {
+    background: $wsms2 !important;
+}

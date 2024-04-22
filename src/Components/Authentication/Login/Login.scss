@@ -1,0 +1,68 @@
+@import "./../../../Styles/Mixin_New.scss";
+@import "./../../../Styles/variables.scss";
+
+
+.login-main {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .login-div {
+        width: 100%;
+        max-width: 330px;
+        height: 400px;
+        background: $input;
+        border-radius: 5px;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .logo-div {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-input {
+            width: 100%;
+            height: 40px;
+            padding-inline-start: 10px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            color: white;
+            background: $left;
+            font-size: 16px;
+            margin-bottom: 1rem;
+            border: 1px solid $border;
+
+        }
+
+        .login-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 12px;
+            background: $wsms2;
+            // background: $senderBlue;
+            border-radius: 5px;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            margin-top: 0.5rem;
+            cursor: pointer;
+            border: 1px solid $border;
+        }
+
+        .google-icon {
+            font-size: 16px;
+
+            .alink {
+                text-decoration: none;
+            }
+        }
+    }
+}
